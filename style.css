@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Press+Start+2P&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  /* border: 1px solid black; */
+}
+
+.main {
+  width: fit-content;
+  margin: auto;
+}
+
+.container {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+}
+
+/*********** GAMEBOARD *********************/
+#gameboard {
+  border: 2px solid black;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgb(204, 203, 203);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: gray;
+}
+
+.hBorder {
+  border-right: 2px solid black;
+}
+
+.vBorder {
+  border-bottom: 2px solid black;
+}
+
+/*********** Buttons *********************/
+.buttons {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.numberButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 5px;
+}
+
+.numberButton {
+  border: none;
+  outline: none;
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+  cursor: pointer;
+  color: gray;
+  border-radius: 5px;
+}
+
+.menuButtons {
+  display: flex;
+  margin-top: 40px;
+}
+
+.restart,
+.erase,
+.validate {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgb(144, 191, 235);
+  cursor: pointer;
+  font-size: 16px;
+  color: gray;
+  width: 80px;
+  height: 80px;
+  margin-right: 5px;
+  text-align: center;
+}
+
+.restart:hover,
+.erase:hover,
+.validate:hover {
+  background-color: rgb(94, 159, 221);
+}
+
+/*************************/
+.fixed {
+  color: rgb(78, 78, 78);
+}
+
+.selected {
+  background: rgb(141, 245, 141) !important;
+}
+
+.hover {
+  background-color: rgb(241, 235, 224);
+}
+
+.normalCell {
+  background-color: white;
+}
+
+.newGameMessage {
+  font-size: 15px;
+  font-style: italic;
+  color: gray;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.completeMessage {
+  text-align: center;
+  color: green;
+  border: 1px solid green;
+}
+
+.hide {
+  display: none;
+}
+
+/*************************/
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .buttons {
+    margin-left: 0px;
+    flex-direction: row;
+  }
+
+  .numberButtons {
+    margin: auto;
+  }
+
+  .menuButtons {
+    margin-top: 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menuButtons * {
+    margin-bottom: 5px;
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="#" rel="shortcut icon">
+    <link href="style.css" rel="stylesheet">
+    <script defer src="questions.js"></script>
+    <script defer src="script.js"></script>
+    <title>Sudoku</title>
+</head>
+
+<body>
+    <div>
+        <div class="main">
+            <h1>SUDOKU</h1>
+            <div class="container">
+                <div>
+                    
+                    <div id="gameboard"></div>
+
+                    <h2 class="hide completeMessage">Great Job !</h2>
+                    <p class="newGameMessage">Refresh to start a new game</p>
+                    <p class="errorMessage"></p>
+                </div>
+                <div class="buttons">
+                    <div class="numberButtons">
+                        <button data-value="1" class="numberButton btn_1">1</button>
+                        <button data-value="2" class="numberButton btn_2">2</button>
+                        <button data-value="3" class="numberButton btn_3">3</button>
+                        <button data-value="4" class="numberButton btn_4">4</button>
+                        <button data-value="5" class="numberButton btn_5">5</button>
+                        <button data-value="6" class="numberButton btn_6">6</button>
+                        <button data-value="7" class="numberButton btn_7">7</button>
+                        <button data-value="8" class="numberButton btn_8">8</button>
+                        <button data-value="9" class="numberButton btn_9">9</button>
+                    </div>
+
+                    <div class="menuButtons">
+                        <div><button class="erase">Erase</button></div>
+                        <div><button class="restart">Restart</button></div>
+                        <div><button class="validate">Validate</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
