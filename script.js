@@ -1,14 +1,15 @@
+/************************************ DOM ELEMENTS ***************************************** */
 const gameboard = document.querySelector("#gameboard");
 const errMessage = document.querySelector(".errorMessage");
 const btn_erase = document.querySelector(".erase");
 const btn_validate = document.querySelector(".validate");
 const btn_restart = document.querySelector(".restart");
 
+/************************************ VARIABLES ***************************************** */
 let game =[];
 let selectedCell=[];
 let randomQuestionIndex = Math.round(Math.random()*50);
 let question = questions[randomQuestionIndex].split("").map(Number);
-
 
 /************************************ DRAW GAMEBOARD ***************************************** */
 function init(){
@@ -43,6 +44,8 @@ init();
 
 
 /************************ GAMEBOARD & NUMBER BUTTON CLICK EVENT ****************************** */
+
+// Click event
 document.addEventListener("click", (e)=>{
     let target = e.target;
 
@@ -78,7 +81,7 @@ document.addEventListener("click", (e)=>{
     }
 })
 
-// Highlight related cells when hover a cell
+// mousemove event - Highlight related cells when hovering over a cell
 document.querySelectorAll(".cell").forEach(cell=>{
     cell.addEventListener("mousemove", (e)=>{
         let row = e.target.dataset.row;
@@ -100,7 +103,7 @@ document.querySelectorAll(".cell").forEach(cell=>{
     })  
 })
 
-// Unhighlight all cells
+// mouseleave event - Unhighlight all cells when the cursor leaves a cell
 gameboard.addEventListener('mouseleave', ()=>{
     for(let r=0;r<9;r++){
         for(let c=0;c<9;c++){
@@ -147,6 +150,8 @@ btn_restart.addEventListener('click', ()=>{
 
 
 /************************************ HELPER FUNCTIONS ***************************************** */
+
+// Return the block a cell belong to
 function findBlock(r, c){
     // the three blocks in the first row
     if(r>=0 && r<=2 && c>=0 && c<=2) return 0;
@@ -165,15 +170,17 @@ function findBlock(r, c){
     if(r>=6 && r<=8 && c>=6 && c<=8) return 8;
 }
 
+
+// Validate the gameboard
 function validate(){
-    // Check rows
+    // Validate each row of the gameboard
     game.forEach(row=>{
         let rowCopy = [...row];
         let invalid = checkEntries(rowCopy);
         if(invalid===true) return true;
     })
 
-    // Check columns
+    // Validate each column of the gameboard
     for(let c=0;c<9;c++){
         let column = [];
         for(let r=0;r<9;r++){
@@ -187,9 +194,8 @@ function validate(){
     }
 
 
-    // Check blocks
+    // Flatten the blocks
     let blocks = [...Array(9)].map(e=>Array(9).fill(0));
-
     for(let r=0;r<9;r++){
         for(let c=0;c<9;c++){
             let block = findBlock(r, c);
@@ -197,6 +203,7 @@ function validate(){
         }
     }
 
+    // Validate each block of the gameboard
     blocks.forEach(block=>{
         let invalid = checkEntries(block);
         if(invalid===true) return true;
@@ -205,6 +212,8 @@ function validate(){
     return false;
 }
 
+
+// Return true is the input array is valid(an array of 9 numbers with no repeated numbers)
 function checkEntries(arr){
     arr.sort();
     for(let i=0;i<8;i++){
