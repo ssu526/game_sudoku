@@ -37,15 +37,45 @@ function init(){
                                     class="cell c${r}${c} ${hBorder} ${vBorder} ${fixedValue}">${value}</div>`
         }
         gameboard.appendChild(newRow);
-    }    
+    }  
+    
+    // mousemove event - Highlight related cells when hovering over a cell
+    document.querySelectorAll(".cell").forEach(cell=>{
+        cell.addEventListener("mousemove", (e)=>{
+            let row = e.target.dataset.row;
+            let col = e.target.dataset.col;
+            let block = e.target.dataset.block;
+
+            for(let r=0;r<9;r++){
+                for(let c=0;c<9;c++){
+                    let element = document.querySelector(`.c${r}${c}`);
+                    if(r==row || c==col || element.dataset.block==block){
+                        element.classList.add("hover");
+                        element.classList.remove("normalCell");
+                    }else{
+                        element.classList.remove("hover");
+                        element.classList.add("normalCell");
+                    }
+                }
+            }
+        })  
+    })
+
+    // mouseleave event - Unhighlight all cells when the cursor leaves a cell
+    gameboard.addEventListener('mouseleave', ()=>{
+        for(let r=0;r<9;r++){
+            for(let c=0;c<9;c++){
+                let element = document.querySelector(`.c${r}${c}`);
+                element.classList.remove("hover");
+            }
+        }
+    })
 }
 
 init();
 
 
-/************************ GAMEBOARD & NUMBER BUTTON CLICK EVENT ****************************** */
-
-// Click event
+/************************ EVENT HANDLER ****************************** */
 document.addEventListener("click", (e)=>{
     let target = e.target;
 
@@ -81,39 +111,6 @@ document.addEventListener("click", (e)=>{
     }
 })
 
-// mousemove event - Highlight related cells when hovering over a cell
-document.querySelectorAll(".cell").forEach(cell=>{
-    cell.addEventListener("mousemove", (e)=>{
-        let row = e.target.dataset.row;
-        let col = e.target.dataset.col;
-        let block = e.target.dataset.block;
-
-        for(let r=0;r<9;r++){
-            for(let c=0;c<9;c++){
-                let element = document.querySelector(`.c${r}${c}`);
-                if(r==row || c==col || element.dataset.block==block){
-                    element.classList.add("hover");
-                    element.classList.remove("normalCell");
-                }else{
-                    element.classList.remove("hover");
-                    element.classList.add("normalCell");
-                }
-            }
-        }
-    })  
-})
-
-// mouseleave event - Unhighlight all cells when the cursor leaves a cell
-gameboard.addEventListener('mouseleave', ()=>{
-    for(let r=0;r<9;r++){
-        for(let c=0;c<9;c++){
-            let element = document.querySelector(`.c${r}${c}`);
-            element.classList.remove("hover");
-        }
-    }
-})
-
-/***************************** MENU BUTTONS: ERASE, VALIDATE, RESTART ****************************** */
 btn_erase.addEventListener('click', ()=>{
     hideCompleteMessage();
     if(selectedCell.length!=0){
