@@ -2,7 +2,6 @@
 A Sudoku clone   
 
 [Live Demo](https://teal-halva-68bb0a.netlify.app/)   
-[Video Demo](https://www.youtube.com/watch?v=LZPiUMtmgHc)
 
 
 
